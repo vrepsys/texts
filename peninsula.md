@@ -37,7 +37,7 @@ val json = Json.parse("""{"response": { "users": [{"name": "John"}, {"name": "Pe
 
 Every object of type Json can be subselected this way
 ```scala
-json("response") // will get a subset of the original object Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
+json("response") // will get Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
 ```
 
 Use dot notation to navivigate trees of json objects
