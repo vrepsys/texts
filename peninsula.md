@@ -103,10 +103,28 @@ json.extractString("status")
 //will throw UnexpectedJsonElementException(Expected json type: string, found json type: big integer, actual json was: 1)
 ```
 
-General rule is to use extractString when you expect the value to exist and not to be null. 
-In case you expect that the property value will be absent sometimes you should use `json.extractStringTry`
+As a sorts of syntactic sugar we also provide the `extract Try` and `extractAs Try` methods for each primitive type
+```scala
+extractStringTry(path: String): String
+extractBooleanTry(path: String): Boolean
+extractIntTry(path: String): Int
+extractBigIntTry(path: String): BitInt
+extractLongTry(path: String): Long
+extractDoubleTry(path: String): Double
+extractAsStringTry(path: String): String
+extractAsBooleanTry(path: String): Boolean
+extractAsIntTry(path: String): Int
+extractAsBigIntTry(path: String): BitInt
+extractAsLongTry(path: String): Long
+extractAsDoubleTry(path: String): Double
+```
 
-Another approach is to make sure the value exists in advance using inspections e.g.
+The try methods are equivalent to wrapping an extract method into a Try. I.e. `json.extractString("path")` is equivalent to `Try(json.extractString("path"))`
+
+However, we recommend using extractString when you expect the value to exist and not to be null. 
+And when you expect the property value to be absent sometimes will be absent or nullyou should use `json.extractStringTry`
+
+Alternatively you can make sure the value exists in advance using inspections - so you're safe to use the simple version of the extract method e.g.
 
 ```scala
 if (json.isString(path) {
