@@ -32,7 +32,7 @@ With the simplicity in mind we developed a simple notation to define a path of a
 
 Let's take an example json
 ```scala
-val json = Json.parse("""{"response": { "users": [{"name": "John"}, {"name": "Peter"}]}}""")
+val json = Json.parse("""{"response": { "users": {"name": "John"}, {"name": "Peter"}]}}""")
 ```
 
 Every object of type Json can be subselected this way to produce another Json object.
@@ -49,8 +49,8 @@ json("response.users")
 
 Peninsula also lets you work conveniently with json arrays
 ```scala
-json("response.users(0)") //result: Json({"name": "John"}))
-json("response.users(0).name") //result: Json("John")
+json("response.users[0]") //result: Json({"name": "John"}))
+json("response.users[0].name") //result: Json("John")
 json("response.users.name") //result: Json("["John", "Peter"]")
 ```
 
@@ -157,12 +157,10 @@ exists(path: String) // true if value on the path exists. Even if it's null
 Peninsula provides two methods that you can use to extract any type. Including case classes.
 
 ```scala
-
-
 val json = Json.parse("""{"users": [{"firstName": "John", "lastName": "Doe"}, {"firstName": "Jonas"}]}""")
 
 case class User(firstName: String, lastName: Option[String])
-json.extract[User]("users(0)") 
+json.extract[User]("users[0]") 
 //result: User("firstName", "lastName")
 
 json.extract[Seq[User]]("users")
