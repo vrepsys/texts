@@ -37,19 +37,21 @@ val json = Json.parse("""{"response": { "users": [{"name": "John"}, {"name": "Pe
 
 Every object of type Json can be subselected this way to produce another Json object.
 ```scala
-json("response") // will get Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
+json("response") 
+//result: Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
 ```
 
 Use dot notation to navivigate trees of json objects
 ```scala
-json("response.users") // will get Json([{"name": "John"}, {"name": "Peter"}])
+json("response.users") 
+//result: Json([{"name": "John"}, {"name": "Peter"}])
 ```
 
 Peninsula also lets you work conveniently with json arrays
 ```scala
-json("response.users(0)") // will get Json({"name": "John"}))
-json("response.users(0).name") // will get Json("John")
-json("response.users.name") // will get Json("["John", "Peter"]")
+json("response.users(0)") //result: Json({"name": "John"}))
+json("response.users(0).name") //result: Json("John")
+json("response.users.name") //result: Json("["John", "Peter"]")
 ```
 
 ### Extractions and inspections - making it predictable
