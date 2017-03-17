@@ -58,8 +58,8 @@ json("response.users.name") //result: Json("["John", "Peter"]")
 
 Path notation can be used to extract primitive values from the json. We made extractions to be simple, consistent in how they behave and react to unexpected and also intuitive for the majority fo developers. We surveyed engineers at Wix to find out what intuitive is.
 
-Every extraction method comes in 2 variations. 
-```
+Every extraction method comes in 2 variations: extract and extractAs.
+```scala
 json.extractString(path)
 json.extractAsString(path)
 ```
@@ -68,7 +68,7 @@ General rule is to use extractString when you expect the value to exist and not 
 
 Another approach is to make sure the value exists in advance using inspections e.g.
 
-```
+```scala
 if (json.isString(path) {
   json.extractString(path)
 }
@@ -88,11 +88,11 @@ It's a strict behaviour - but on the other hand you always know what to expect a
 
 If you require or want some flexibility in how values are read you can use extractAs methods - that will try to coerce the values into the desired type.
 
-### Extracting case classes and formats
+## Extracting case classes and formats
 
 Extract case classes using plain extract and extractOpt methods
 
-```
+```scala
 json.extract[Preferences]("users(0).preferences")
 ```
 
