@@ -152,26 +152,25 @@ isNull(path: String)
 exists(path: String) // true if value on the path exists. Even if it's null 
 ```
 
-## Extracting case classes and formats
+## Extracting case classes and structures
 
-Extract case classes using plain extract and extractOpt methods
+Peninsula provides two methods that you can use to extract any type. Including case classes.
 
 ```scala
-json.extract[Preferences]("users(0).preferences")
+
+
+val json = Json.parse("""{"users": [{"firstName": "John", "lastName": "Doe"}, {"firstName": "Jonas"}]}""")
+
+case class User(firstName: String, lastName: Option[String])
+json.extract[User]("users(0)") 
+//result: User("firstName", "lastName")
+
+json.extract[Seq[User]]("users")
+//result: Seq(User("John", "Doe"), User("Jonas", None))
 ```
-
-When constructing or parsing json it is possible to specify json4s formats.
-
-These formats will work for extract and extractOpt.
-
-However, it does not impact extractType and extractTypeTry or inspection methods in any way. 
 
 ## Other useful methods
 ```scala
-json.only
-json.prettyPrint
-json.compactPrint
+json.prettyPrint // prints json in a human readable way
+json.compactPrint // prints json in a compact way for wiring over network
 ```
-
-
-## When to use
