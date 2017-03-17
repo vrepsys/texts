@@ -73,21 +73,35 @@ UnexpectedJsonElementException //if the type of the value doesn't match the type
 
 There are 6 extract methods for different types
 ```scala
-extractString
-extractBoolean
-extractInt
-extractBigInt
-extractLong
-extractDouble
+extractString(path: String): String
+extractBoolean(path: String): Boolean
+extractInt(path: String): Int
+extractBigInt(path: String): BitInt
+extractLong(path: String): Long
+extractDouble(path: String): Double
 ```
 
 All of them behave consistently regarding null values, non existent property, wrong types. In all 3 cases they throw a respective exception.
 
+Alternatively, if you prefere more loose type checking, you will want to use the 'extractAs' methods that will try and coerce a wrong type into becoming the type desired. 
+```scala
+extractAsString(path: String): String
+extractAsBoolean(path: String): Boolean
+extractAsInt(path: String): Int
+extractAsBigInt(path: String): BitInt
+extractAsLong(path: String): Long
+extractAsDouble(path: String): Double
+```
 
+Example:
+```scala
+val json = Json.parse("""{"status": 1}""");
+json.extractAsString("status")
+//result: "1" 
 
-
-
-
+json.extractString("status") 
+//will throw UnexpectedJsonElementException(Expected json type: string, found json type: big integer, actual json was: 1)
+```
 
 General rule is to use extractString when you expect the value to exist and not to be null. If the property's absence is an expected scenario one should use `json.extractStringTry`
 
