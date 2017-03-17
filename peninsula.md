@@ -15,7 +15,7 @@ In Peninsula we made doing simple things simple - like in Javascript.
 ```scala
 import com.wix.peninsula.Json;
 
-val json = Json.parse({"response": { "status": "error", "error": "Some error message" }});
+val json = Json.parse("""{"response": { "status": "error", "error": "Some error message" }}""");
 
 if (json.contains("response.status", "error")) {
   println(json.extractString("response.error"))
