@@ -103,7 +103,8 @@ json.extractString("status")
 //will throw UnexpectedJsonElementException(Expected json type: string, found json type: big integer, actual json was: 1)
 ```
 
-General rule is to use extractString when you expect the value to exist and not to be null. If the property's absence is an expected scenario one should use `json.extractStringTry`
+General rule is to use extractString when you expect the value to exist and not to be null. 
+In case you expect that the property value will be absent sometimes you should use `json.extractStringTry`
 
 Another approach is to make sure the value exists in advance using inspections e.g.
 
