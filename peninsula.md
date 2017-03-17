@@ -54,17 +54,15 @@ json("response.users(0).name") //result: Json("John")
 json("response.users.name") //result: Json("["John", "Peter"]")
 ```
 
-### Extractions and inspections - making it predictable
+## Extractions and inspections - making it predictable
 
-We have extractions for primitive types.
+Path notation can be used to extract primitive values from the json. We made extractions to be simple, consistent in how they behave and react to unexpected and also intuitive for the majority fo developers. We surveyed engineers at Wix to find out what intuitive is.
 
-In order for out API to be consistent and more intuitive surveyed developers about how they expect the extractions to work.
-
-For example
-
-`json.extractString(path)`
-`json.extractStringTry(path)`
-
+Every extraction method comes in 2 variations. 
+```
+json.extractString(path)
+json.extractAsString(path)
+```
 
 General rule is to use extractString when you expect the value to exist and not to be null. If the property's absence is an expected scenario one should use `json.extractStringTry`
 
@@ -104,7 +102,15 @@ These formats will work for extract and extractOpt.
 
 However, it does not impact extractType and extractTypeTry or inspection methods in any way. 
 
+## Other useful methods
+```scala
+json.only
+json.prettyPrint
+json.compactPrint
+```
 
+
+## When to use
 
 
 
