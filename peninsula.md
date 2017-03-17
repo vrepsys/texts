@@ -46,7 +46,7 @@ json("response.users") // will get Json([{"name": "John"}, {"name": "Peter"}])
 ```
 
 Peninsula also lets you work conveniently with json arrays
-```
+```scala
 json("response.users(0)") // will get Json({"name": "John"}))
 json("response.users(0).name") // will get Json("John")
 json("response.users.name) // will get Json("["John", "Peter"]")
