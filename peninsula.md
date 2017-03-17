@@ -60,9 +60,34 @@ Path notation can be used to extract primitive values from the json. We made ext
 
 Every extraction method comes in 2 variations: extract and extractAs.
 ```scala
-json.extractString(path)
-json.extractAsString(path)
+json.extractString("path")
+json.extractAsString("path")
 ```
+
+`extractString` will return a string only if a string value exists in the given path. Otherwise it will throw one of the following exceptions.
+```
+JsonElementIsNull //exception if value is null
+JsonPathDoesntExist //exception if the property on the path is not present
+UnexpectedJsonElementException //if the type of the value doesn't match the type expected
+```
+
+There are 6 extract methods for different types
+```scala
+extractString
+extractBoolean
+extractInt
+extractBigInt
+extractLong
+extractDouble
+```
+
+All of them behave consistently regarding null values, non existent property, wrong types. In all 3 cases they throw a respective exception.
+
+
+
+
+
+
 
 General rule is to use extractString when you expect the value to exist and not to be null. If the property's absence is an expected scenario one should use `json.extractStringTry`
 
@@ -78,9 +103,7 @@ if (json.isString(path) {
 
 
 extractString, extractInt .. methods behave the same way with regards to presence and types:
-JsonElementIsNull exception if value is null
-JsonPathDoesntExist exception if the property on the path is not present
-UnexpectedJsonElementException if the type of the value doesn't match the type expected
+
 
 extractType methods do not do type coercion - meaning that getString("key") will always throw exception if the value of the key is anything else but a string.
 
