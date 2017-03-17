@@ -22,7 +22,9 @@ if (json.contains("response.status", "error")) {
 }
 ```
 
-You're working with json data - so the main domain object is `Json`. No ObjectMappers. No module registrations. No impicit Formats or serialization strategies.
+You're working with json data - so the main domain object is `Json`. 
+
+No ObjectMappers. No module registrations. No impicit Formats or serialization strategies.
 
 ## Path notation
 
