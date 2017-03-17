@@ -24,7 +24,9 @@ if (json.contains("response.status", "error")) {
 
 You're working with json data - so the main domain object is `Json`. No ObjectMappers. No module registrations. No impicit Formats or serialization strategies.
 
-With the simplicity in mind we developed a simple notation to define a path of a json value. We took inspiration from how Javascript operates thus making it familiar to developers who know javascript or even a simple oop.
+#Path notation
+
+With the simplicity in mind we developed a simple notation to define a path of a json value. We took inspiration from how Javascript operates thus making it familiar to developers who know javascript or even simple OOP.
 
 `json.extractString('response.status')` - the obvious case
 `json.extractString` - without any parameters - if the top level json is just a string value
