@@ -28,7 +28,18 @@ You're working with json data - so the main domain object is `Json`. No ObjectMa
 
 With the simplicity in mind we developed a simple notation to define a path of a json value. We took inspiration from how Javascript operates thus making it familiar to developers who know javascript or even simple OOP.
 
-`json.extractString('response.status')` - the obvious case
+Every object of type Json can be subselected this way
+```scala
+json("response") // will be equal to Json({"status": "error", "error": "Some error message"})
+```
+
+Use dot notation to navivigate trees of json objects
+```scala
+json("response.status")
+```
+
+Select the root 
+```
 `json.extractString` - without any parameters - if the top level json is just a string value
 
 Peninsula also lets you work conveniently with json arrays
