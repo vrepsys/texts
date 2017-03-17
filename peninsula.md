@@ -135,7 +135,7 @@ if (json.isString(path) {
 `isString` true guarantees the success of `extractString` with the same path.
 
 Peninsula has inspections for all primitive types
-```
+```scala
 isString(path: String)
 isDouble(path: String)
 isBigDecimal(path: String)
@@ -145,7 +145,7 @@ isBoolean(path: String)
 ```
 
 Also for non primitives and other scenarios
-```
+```scala
 isArray(path: String)
 isObject(path: String)
 isNull(path: String)
