@@ -28,25 +28,27 @@ You're working with json data - so the main domain object is `Json`. No ObjectMa
 
 With the simplicity in mind we developed a simple notation to define a path of a json value. We took inspiration from how Javascript operates thus making it familiar to developers who know javascript or even simple OOP.
 
+Let's take an example json
+```scala
+val json = Json.parse("""{"response": { "users": [{"name": "John"}, {"name": "Peter"}]}}""")
+```
+
 Every object of type Json can be subselected this way
 ```scala
-json("response") // will be equal to Json({"status": "error", "error": "Some error message"})
+json("response") // will get a subset of the original object Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
 ```
 
 Use dot notation to navivigate trees of json objects
 ```scala
-json("response.status")
+json("response.users") // will get Json([{"name": "John"}, {"name": "Peter"}])
 ```
-
-Select the root 
-```
-`json.extractString` - without any parameters - if the top level json is just a string value
 
 Peninsula also lets you work conveniently with json arrays
 ```
-val json = JSON PATH
+json("response.users(0)") // will get Json({"name": "John"}))
+json("response.users(0).name") // will get Json("John")
+json("response.users.name) // will get Json("["John", "Peter"]")
 ```
-
 
 ### Extractions and inspections - making it predictable
 
