@@ -35,7 +35,7 @@ Let's take an example json
 val json = Json.parse("""{"response": { "users": [{"name": "John"}, {"name": "Peter"}]}}""")
 ```
 
-Every object of type Json can be subselected this way
+Every object of type Json can be subselected this way to produce another Json object.
 ```scala
 json("response") // will get Json({ "users": [{"name": "John"}, {"name": "Peter"}]}})
 ```
