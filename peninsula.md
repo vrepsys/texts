@@ -3,11 +3,7 @@ Occasionaly, in software design, the choices we make are dictated not by best pr
 
 One area where we found enginners choose less complexity over good design is dealing with jsons in our scala microservices.
 
-And this is caused by the complexity of dealing with simple jsons in scala using existing solutions.
-
-JSON - stands for Javascript Object Notation.
-
-Let's see how easy it is to perform a simple task on a javascipt object in Javascript.
+And this is caused by the complexity of dealing with simple jsons in scala using existing solutions. JSON - stands for Javascript Object Notation. Let's see how easy it is to perform a simple task on a javascipt object in Javascript.
 
 ```javascript
 var json = {"response": { "status": "error", "error": "Some error message" }}
